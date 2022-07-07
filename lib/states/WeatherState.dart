@@ -1,28 +1,11 @@
 import '../models/Weather.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
-abstract class WeatherState extends Equatable {
-  const WeatherState();
+class WeatherState {
+  Weather weather;
+  List<WeatherHourly> hourlyWeather;
 
-  @override
-  List<Object> get props => [];
-}
+  WeatherState(this.weather,this.hourlyWeather);
 
-class WeatherInitial extends WeatherState {}
 
-class WeatherLoadInProgress extends WeatherState {}
-
-class WeatherLoadSuccess extends WeatherState {
-  final Weather weather;
-  final List<WeatherHourly> hourlyWeather;
-
-  const WeatherLoadSuccess(
-      {@required this.weather,@required this.hourlyWeather})
-      : assert(weather != null);
-
-  @override
   List<Object> get props => [weather, hourlyWeather];
 }
-
-class WeatherLoadFailure extends WeatherState {}
